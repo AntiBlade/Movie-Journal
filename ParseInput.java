@@ -72,7 +72,12 @@ public class ParseInput
     }
     }
     
-    private void view(){
-        
+    private void view(String[] words){
+        if(words.length==1){
+            System.out.println(current);
+        } else {
+            String[] a = Arrays.copyOfRange(words, 1, words.length);
+            searchLoc(a);
+        }
     }
 }
