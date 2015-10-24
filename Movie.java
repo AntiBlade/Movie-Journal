@@ -34,7 +34,10 @@ public class Movie implements Media{
         s += getDatum("Title");
         s += "\n\t" + getDatum("Director");
         s += "\n\t" + getDatum("Released");
-        s += "\n\t" + getDatum("Plot").substring(0, 45) + "....";
+        String plot = getDatum("Plot");
+        int len = 45;
+        if (plot.length() < 45) len = plot.length();
+        s += "\n\t" + plot.substring(0, len) + "....";
         return s;
     }
 

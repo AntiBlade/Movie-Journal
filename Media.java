@@ -23,4 +23,6 @@ interface Media {
     String getDatum(String tag);
 
     String getId();
+
+    String toString();
 }
