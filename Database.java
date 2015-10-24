@@ -18,12 +18,13 @@ public class Database {
     try{
         s = new URL(DBURL + "i=" + id + DBPARAMS);
     }
-    catch(MalformedURLException a){return null;}
+    catch(MalformedURLException a){throw new IllegalArgumentException();}
     JSONObject json = lookupURL(s);
     if (json.getString("Response").equals("False"))
         return null;
     return json;
     }
+
     /**
      * Search the database for a title using the given keywords
      * @param String name - keywords in the name of the title, separated by
@@ -36,7 +37,7 @@ public class Database {
     try{
         s = new URL(DBURL + "t=" + name + DBPARAMS);
     }
-    catch(MalformedURLException a){return null;}
+    catch(MalformedURLException a){throw new IllegalArgumentException();}
     JSONObject json = lookupURL(s);
     if (json.getString("Response").equals("False"))
         return null;
@@ -50,13 +51,13 @@ public class Database {
      */
     private JSONObject lookupURL(URL dbEntry) {
     try{
-     URLConnection dbConnect = dbEntry.openConnection();
-    BufferedReader in;
+	URLConnection dbConnect = dbEntry.openConnection();
+	BufferedReader in;
         in = new BufferedReader(
                            new InputStreamReader(
                            dbConnect.getInputStream()));
-    return new JSONObject(in.readLine());
+	return new JSONObject(in.readLine());
     }
-        catch(IOException a){return null;}
+        catch(IOException a){throw new IllegalArgumentException();}
     }
 }
