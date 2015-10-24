@@ -10,6 +10,7 @@ public class Entry {
     private double userRating;
     private String userReview;
     private boolean hasSeen;
+    private int dateSeen;
     private String entryDescription;
     private int[] location = new int[2];
     // TODO: Add more features
@@ -77,6 +78,22 @@ public class Entry {
      * Returns: The value in hasSeen
      */
     public boolean getHasSeen() {return hasSeen;}
+
+    /*
+     * setDateSeen
+     * Purpose: Set the dateSeen field
+     * Parameters: (int) newDate
+     * Returns: Nothing (sets a value) 
+     */
+    public void setDateSeen(int newDate) {dateSeen = newDate;}
+
+    /*
+     * getDateSeen
+     * Purpose: Gets the value in dateSeen
+     * Parameters: None
+     * Returns: The value in dateSeen
+     */
+    public int getDateSeen() {return dateSeen;}
 
     /*
      * setEntryDescription
