@@ -39,7 +39,7 @@ public class UserInput
      * @returns String - the user's input
      */
 	public static String getInput(Scanner console, String prompt) {
-        System.out.print(prompt);
+        System.out.print(" [" + prompt + "]> ");
         return console.nextLine();
     }
 }
