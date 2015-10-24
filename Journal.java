@@ -53,7 +53,7 @@ public class Journal
      */
     private int indexOf(String id) {
 	for(int i = 0; i < entries.size(); ++i) {
-	    if (entries.get(i).getItem().getId() == id)
+	    if (entries.get(i).getId() == id)
 		return i;
 	}
     return -1;
