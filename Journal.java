@@ -3,6 +3,36 @@ import java.util.ArrayList;
 public class Journal
 {
     ArrayList<Entry> entries = new ArrayList<Entry>();
+    private String owner;
+
+    public Journal(String owner) {
+        this.owner = owner;
+    }
+
+    /**
+     * Gets the owner of this journal
+     * @return the owner of this journal
+     */
+    public String getOwner() {
+        return owner;
+    }
+
+    /**
+     * Sets the owner of this journal
+     * @param the new owner of this journal
+     */
+    public void setOwner(String newName) {
+        owner = newName;
+    }
+
+    public String toString() {
+        String s = "";
+        s += owner + "'s Movie Journal";
+        for (Entry e : entries) {
+            s += "\n\n" + e; 
+        }
+        return s;
+    }
     
     /*
      * addEntry
