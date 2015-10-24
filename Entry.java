@@ -93,7 +93,8 @@ public class Entry {
      * Parameters: None
      * Returns: The value in dateSeen
      */
-    public void getDateSeen() {return dateSeen;}
+    public int getDateSeen() {return dateSeen;}
+
     /*
      * setEntryDescription
      * Purpose: Set the entryDescription field
