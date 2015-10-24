@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import JSONObject.*;
 import java.util.Arrays;
-import java.io.File;
 /**
  * Take input from User
  * 
@@ -15,8 +14,11 @@ public class ParseInput
     ParseInput(Journal cur){
         current = cur;
     }
+    
+    private Scanner cur;
 
     public boolean parse(String input, Scanner console){
+	cur = console;
 	String[] words = input.split(" ");
 	boolean done = false;
 	String test = words[0].toLowerCase();
@@ -84,25 +86,27 @@ public class ParseInput
 	}
     }
 
-    private void view(String[] words) {
+    private ArrayList<Entry> view(String[] words) {
 	if (words.length == 1)
 	    System.out.println(current);
 	else {
 	    String[] a = Arrays.copyOfRange(words, 1, words.length);
 	    ArrayList<Entry> b = searchLoc(a);
-	    for (Entry c : b) 
-		System.out.println(b);
+	    for (int i = 0; i < b.size(); ++i) 
+		System.out.println(i+1 + ": " + b.get(i) + "\n");
+	    return b;
 	}
     }
 
     private void remove(String[] words) {
 	if (current.getEntries().size() > 0) {
-	    if (words.length > 1) {
-		ArrayList<Entry> results = searchLoc(words);
-		for (int i = 0; i < results.size(); ++i)
-		    System.out.println(i+1 + ": " + results.get(i) + "\n");
-		
-	    }
+	    result = view(words);
+	    System.out.println("Enter the number of the entry you wish to remove, -1 to cancel: ");
+	    int input = cur.nextInt();
+	    if (input < words.size())
+		Journal.removeEntry(result.get(input-1));
+	} else {
+	    System.out.println("No entries found; nothing to remove!");
 	}
     }
 }
