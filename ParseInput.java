@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import JSONObject.*;
 import java.util.Arrays;
-import java.io.File;
 /**
  * Take input from User
  * 
@@ -39,7 +38,7 @@ public class ParseInput
         else
             System.out.println("You done goofed"); // placeholder
     } else if (test.equals("load")) {
-        if (words.length == 2 && new File(System.getProperty("user.dir") + words[1]).exists())
+        if (words.length == 2 && new File(System.getProperty("user.dir" + words[1]).exists())
         	current = JournalEncoder.decodeJournal(words[1]);        
         else
             System.out.println("you done goofed"); // placeholder
@@ -95,8 +94,8 @@ public class ParseInput
 	    ArrayList<Entry> b = searchLoc(a);
 	    for (int i = 0; i < b.size(); ++i) 
 		System.out.println(i+1 + ": " + b.get(i) + "\n");
+	    return b;
 	}
-	return a;
     }
 
     private void remove(String[] words) {
