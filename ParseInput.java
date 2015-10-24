@@ -50,13 +50,17 @@ public class ParseInput
 
     private void searchDB(String query) {
         ArrayList<JSONObject> list = Database.searchByQuery(query);
+        if (list == null)
+            return;
         for(JSONObject a : list){
-            System.out.println(new Entry(a) + "\n");
+            if (a != null) {
+				System.out.println(new Entry(a) + "\n");
+            }
         }
     }
    
     private ArrayList<Entry> searchLoc(String query) {
-	ArrayList<Entry> list = current.search(query);
+		ArrayList<Entry> list = current.search(query);
 	return list;
     }
 
