@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  * Take input from User
  * 
@@ -7,7 +7,7 @@
  */
 public class ParseInput
 {
-   public static boolean parse(String input){
+    public static boolean parse(String input, Scanner console){
        String[] words = input.split("\\S");
        switch(words[0].toLowerCase()){
         case "search":
@@ -30,6 +30,12 @@ public class ParseInput
         case "remove":
         
         break;
+       case "quit":
+           return false;
+           break;
+       case "load":
+           //load new journal from filename words[1]
+           break;
     }
     return true;//Correct Just for compiler
    }
@@ -43,4 +49,8 @@ public class ParseInput
       private static String reConcat(String[] a){
        return reConcat(a, " ", 0);
    }
+
+    private static void searchDB(String query) {
+        // search db
+    }
 }
