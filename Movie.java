@@ -1,12 +1,17 @@
 import org.json.*;
-
+/**
+ * Stores information related to a movie.
+ */
 public class Movie {
 
     private String id;
     private JSONObject dBInfo;
 
-    public void setInfo() {
-	dBInfo = Database.idSearch(id);
+    /**
+     * 
+     */
+    public void setInfo(JSONObject newDBInfo) {
+	newDBInfo = dBInfo;
     }
 
     /**
