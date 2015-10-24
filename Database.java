@@ -68,7 +68,7 @@ public class Database {
 		JSONArray jsonArray = json.getJSONArray("Search");
 		ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
 		for (int i = 0; i < jsonArray.length(); i++) {
-		    jsonArrList.add(jsonArray.getJSONObject(i));
+		    jsonArrList.add(getById(jsonArray.getJSONObject(i).getString("imdbID")));
 		}
 		return jsonArrList;
     }
@@ -118,7 +118,7 @@ public class Database {
 		JSONArray jsonArray = json.getJSONArray("Search");
 		ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
 		for (int i = 0; i < jsonArray.length(); i++) {
-		    jsonArrList.add(jsonArray.getJSONObject(i));
+		    jsonArrList.add(getById(jsonArray.getJSONObject(i).getString("imdbID")));
 		}
 		return jsonArrList;
     }
