@@ -28,9 +28,9 @@ public class ParseInput
 	} else if (test.equals("add")) {
 	    
 	} else if (test.equals("view")) {
-	    
+	    view(words);
 	} else if (test.equals("remove")) {
-       
+	    remove(words);
 	} else if (test.equals("quit")) {
             done = true;
     } else if (test.equals("save")) {
@@ -79,7 +79,6 @@ public class ParseInput
 	String search;
 	if(words[1].equals("online")){
 	    search = reConcat(words, "+", 2);
-	    System.out.println(search.length());
 	    searchDB(search);
 	} else if(words[1].equals("local")){
 	    search = reConcat(words, " ", 2);
