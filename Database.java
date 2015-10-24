@@ -1,8 +1,9 @@
+
 import java.net.*;
 import java.io.*;
-import org.json.*;
+import JSONObject.*;
 
-public static class Database {
+public class Database {
 
     private static final String DBURL = "http://www.ombdapi.com/?";
     private static final String DBPARAMS = "&plot=short&r=json&tomatoes=true";
@@ -12,11 +13,16 @@ public static class Database {
      * @param String id - the IMDb ID of the title
      * @return JSONObject - the information associated with the given id
      */
-    public JSONOBJECT searchId(String id) {
-	JSONObject json = lookupURL(new URL(DBURL + "i=" + id + BDPARAMS));
-	if (json.getString("Response").equals("False"))
-	    return null;
-	return json;
+    public JSONObject searchId(String id) {
+    URL s;
+    try{
+        s = new URL(DBURL + "i=" + id + DBPARAMS);
+    }
+    catch(MalformedURLException a){return null;}
+    JSONObject json = lookupURL(s);
+    if (json.getString("Response").equals("False"))
+        return null;
+    return json;
     }
     /**
      * Search the database for a title using the given keywords
@@ -25,11 +31,16 @@ public static class Database {
      * @return JSONObject - the information most closely associated with the
      *                      given name
      */
-    public JSONOBJECT searchName(String name) {
-	JSONObject json = lookupURL(new URL(DBURL + "t=" + name + BDPARAMS));
-	if (json.getString("Response").equals("False"))
-	    return null;
-	return json;
+    public JSONObject searchName(String name) {
+    URL s;
+    try{
+        s = new URL(DBURL + "t=" + name + DBPARAMS);
+    }
+    catch(MalformedURLException a){return null;}
+    JSONObject json = lookupURL(s);
+    if (json.getString("Response").equals("False"))
+        return null;
+    return json;
     }
 
     /**
@@ -37,11 +48,15 @@ public static class Database {
      * @param URL dBentry - the url to get JSON from
      * @return JSONObject - the JSON data from the URL as a JSONObject
      */
-    private JSONObject lookupURL(URL dBentry) {
-	URLConnection dbConnect = dbEntry.openConnection();
-	BufferedReader in = new BufferedReader(
-					       new InputStreamReader(
-					       dbConnect.getInputStream()));
-	return new JSONObject(in.readLine());
+    private JSONObject lookupURL(URL dbEntry) {
+    try{
+     URLConnection dbConnect = dbEntry.openConnection();
+    BufferedReader in;
+        in = new BufferedReader(
+                           new InputStreamReader(
+                           dbConnect.getInputStream()));
+    return new JSONObject(in.readLine());
+    }
+        catch(IOException a){return null;}
     }
 }
