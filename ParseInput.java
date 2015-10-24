@@ -8,12 +8,12 @@
 public class ParseInput
 {
    public static boolean parse(String input){
-       String[] words = input.split(" ");
+       String[] words = input.split("\\S");
        switch(words[0].toLowerCase()){
         case "search":
             if(words[1].equals("online")){
                 //Search the database
-                //Call ReConccate
+                reConcat(String[] a, String s, int first)
             }else if(words[1].equals("local")){
                 
             } else{
@@ -33,14 +33,14 @@ public class ParseInput
     }
     return true;//Correct Just for compiler
    }
-   private static String reConcat(String[] a, String s){
+   private static String reConcat(String[] a, String s, int first){
        String out = "";
-       for(String d:a){
-           out += d + s;
+       for(int i = first; i < a.length; i++){
+           out += a[i] + s;
        }
        return out;
    }
       private static String reConcat(String[] a){
-       return reConcat(a, " ");
+       return reConcat(a, " ", 0);
    }
 }
