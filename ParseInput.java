@@ -88,9 +88,10 @@ public class ParseInput
     }
 
     private ArrayList<Entry> view(String[] words) {
-	if (words.length == 1)
+	if (words.length == 1) {
 	    System.out.println(current);
-	else {
+	    return current.getEntries();
+	} else {
 	    String[] a = Arrays.copyOfRange(words, 1, words.length);
 	    ArrayList<Entry> b = searchLoc(a);
 	    for (int i = 0; i < b.size(); ++i) 
