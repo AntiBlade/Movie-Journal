@@ -87,7 +87,7 @@ public class Journal
 	    ArrayList<Entry> found = new ArrayList<Entry>();
 	    for (int i = 0; i < entries.size(); ++i) {
 		Entry current = entries.get(i);
-		if (current.getItem().getDatum("Title").indexOf(query) == -1)
+		if (current.getItem().getDatum("Title").toLowerCase().indexOf(query.toLowerCase()) == -1)
 		    continue;
 		else
 		    found.add(current);
