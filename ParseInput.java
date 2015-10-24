@@ -17,7 +17,7 @@ public class ParseInput
     }
     
     private Scanner cur;
-
+    
     public boolean parse(String input, Scanner console){
 	cur = console;
 	String[] words = input.split(" ");
@@ -26,24 +26,24 @@ public class ParseInput
 	if (test.equals("search")) {
 	    search(words);
 	} else if (test.equals("add")) {
-	    
+	    add(words);
 	} else if (test.equals("view")) {
 	    view(words);
 	} else if (test.equals("remove")) {
 	    remove(words);
 	} else if (test.equals("quit")) {
             done = true;
-    } else if (test.equals("save")) {
-        if (words.length == 2)
-            JournalEncoder.encodeJournal(current, words[1]);
-        else
-            System.out.println("You done goofed"); // placeholder
-    } else if (test.equals("load")) {
-        if (words.length == 2 && new File(System.getProperty(words[1])).exists())
+	} else if (test.equals("save")) {
+	    if (words.length == 2)
+		JournalEncoder.encodeJournal(current, words[1]);
+	    else
+		System.out.println("You done goofed"); // placeholder
+	} else if (test.equals("load")) {
+	    if (words.length == 2 && new File(System.getProperty(words[1])).exists())
         	current = JournalEncoder.decodeJournal(words[1]);        
-        else
-            System.out.println("you done goofed"); // placeholder
-    }
+	    else
+		System.out.println("you done goofed"); // placeholder
+	}
         return done;
     }
     private String reConcat(String[] a, String s, int first){
@@ -54,27 +54,35 @@ public class ParseInput
 	out += a[a.length - 1];
         return out;
     } 
-        private String reConcat(String[] a){
+    private String reConcat(String[] a){
         return reConcat(a, " ", 0);
     }
-
+    
     private void searchDB(String query) {
         ArrayList<JSONObject> list = Database.searchByQuery(query);
         for(JSONObject a : list){
             System.out.println(new Entry(a) + "\n");
         }
     }
-   
+
+    private ArrayList<Entry> searchDB_return(String query) {
+	ArrayList<JSONObject> list = Database.searchByQuery(query);
+	ArrayList<Entry> result = new ArrayList<Entry>();
+	for (JSONObject a : list)
+	    result.add(new Entry(a));
+	return result;
+    }
+    
     private ArrayList<Entry> searchLoc(String query) {
 	ArrayList<Entry> list = current.search(query);
 	return list;
     }
-
+    
     private ArrayList<Entry> searchLoc(String[] query) {
 	ArrayList<Entry> list = current.search(query);
 	return list;
     }
-
+    
     private void search(String[] words) {
 	String search;
 	if(words[1].equals("online")){
@@ -86,7 +94,7 @@ public class ParseInput
 	    search = reConcat(words, " ", 1);
 	}
     }
-
+    
     private ArrayList<Entry> view(String[] words) {
 	if (words.length == 1) {
 	    System.out.println(current);
@@ -99,7 +107,7 @@ public class ParseInput
 	    return b;
 	}
     }
-
+    
     private void remove(String[] words) {
 	if (current.getEntries().size() > 0) {
 	    ArrayList<Entry> result = view(words);
@@ -113,15 +121,17 @@ public class ParseInput
 	}
     }
     private void add(String[] words) {
-	if (current.getEntries().size() > 0) {
-	    ArrayList<Entry> result = view(words);
-	    System.out.println("Enter the number of the entry you wish to add, -1 to cancel: ");
-	    int input = cur.nextInt();
-	    if (input < words.length) {
-		current.addEntry(result.get(input-1));
-	    } else {
-		System.out.println("No entries found; nothing to add!");
-	    }
+	
+	ArrayList<Entry> result = searchDB_return(reConcat(words, "+", 1));
+	for (int i = 0; i < result.size(); ++i)
+	    System.out.println(i+1 + ": " + result.get(i));
+	System.out.println("Enter the number of the entry you wish to add, -1 to cancel: ");
+	int input = cur.nextInt();
+	if (input < words.length) 
+	    current.addEntry(result.get(input-1));
+	else {
+	    System.out.println("No entries found; nothing to add!");
 	}
+	
     } 
 }
