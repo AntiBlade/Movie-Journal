@@ -13,7 +13,7 @@ public class ParseInput
         case "search":
             if(words[1].equals("online")){
                 //Search the database
-                reConcat(String[] a, String s, int first)
+                String search = reConcat(words, " ", 2);
             }else if(words[1].equals("local")){
                 
             } else{
