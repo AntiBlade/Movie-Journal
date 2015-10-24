@@ -6,7 +6,7 @@ import java.io.File;
 /**
  * Take input from User
  * 
- * @author Harrison
+ * @authors Harrison, Caleb, Chris
  * @version Beta
  */
 public class ParseInput
@@ -30,9 +30,13 @@ public class ParseInput
        
 	} else if (test.equals("quit")) {
             done = true;
-        
+    } else if (test.equals("save")) {
+        if (words.length == 2)
+            JournalEncoder.encodeJournal(current, words[1]);
+        else
+            System.out.println("You done goofed"); // placeholder
     } else if (test.equals("load")) {
-        if (words.length == 2 && new File(words[1]).exists())
+        if (words.length == 2 && new File(System.getProperty("user.dir" + words[1]).exists())
         	current = JournalEncoder.decodeJournal(words[1]);        
         else
             System.out.println("you done goofed"); // placeholder
