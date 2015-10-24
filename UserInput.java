@@ -15,11 +15,11 @@ public class UserInput
      */
     public static void userInput() {
         Scanner console = new Scanner(System.in);
-        ParseInput parser = new ParseInput(new Journal("Caleb"));
+        ParseInput parser = new ParseInput(console);
         boolean done = false;
         while(!done) {
-            done = parser.parse(getInput(console), console);
-	}
+            done = parser.parse(getInput(console));
+		}
     }
 
     /**

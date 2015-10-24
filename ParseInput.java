@@ -12,25 +12,28 @@ import java.io.*;
 public class ParseInput
 {
     Journal current;
-    ParseInput(Journal cur){
-        current = cur;
+    Scanner console;
+
+    ParseInput(){
+        System.out.println("Whose journal is this?");
+        this.console = console;
+        current = new Journal(UserInput.getInput(console, "Name"));
     }
     
     private Scanner cur;
     
-    public boolean parse(String input, Scanner console){
-	cur = console;
+    public boolean parse(String input){
 	String[] words = input.split(" ");
 	boolean done = false;
 	String test = words[0].toLowerCase();
 	if (test.equals("search")) {
 	    search(words);
 	} else if (test.equals("add")) {
-	    add(words, console);
+	    add(words);
 	} else if (test.equals("view")) {
 	    view(words);
 	} else if (test.equals("remove")) {
-	    remove(words, console);
+	    remove(words);
 	} else if (test.equals("quit")) {
             done = true;
 	} else if (test.equals("save")) {
@@ -39,7 +42,7 @@ public class ParseInput
 	    else
 		System.out.println("You done goofed"); // placeholder
 	} else if (test.equals("load")) {
-	    if (words.length == 2 && new File(System.getProperty(words[1])).exists())
+	    if (words.length == 2 && new File(words[1]).exists())
         	current = JournalEncoder.decodeJournal(words[1]);        
 	    else
 		System.out.println("you done goofed"); // placeholder
@@ -108,7 +111,7 @@ public class ParseInput
 	}
     }
     
-    private void remove(String[] words, Scanner console) {
+    private void remove(String[] words) {
 	if (current.getEntries().size() > 0) {
 	    ArrayList<Entry> result = searchLoc(reConcat(words, " ", 1));
 	    for (int i = 0; i < result.size(); ++i)
@@ -122,7 +125,7 @@ public class ParseInput
 	    }
 	}
     }
-    private void add(String[] words, Scanner console) {
+    private void add(String[] words) {
 	
 	ArrayList<Entry> result = searchDB_return(reConcat(words, "+", 1));
 	for (int i = 0; i < result.size(); ++i)
