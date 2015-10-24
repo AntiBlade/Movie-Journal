@@ -71,4 +71,12 @@ public class ParseInput
 	    search = reConcat(words, " ", 1);
 	}
     }
+
+    private void remove(String[] words) {
+	if (words.length > 1) {
+	    ArrayList<Entry> results = searchLoc(words[1]);
+	    for (int i = 0; i < results.size(); ++i)
+		System.out.println(i+1 + ": " + results.get(i) + "\n");
+	}
+    }
 }
