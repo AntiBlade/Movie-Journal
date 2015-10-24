@@ -2,7 +2,7 @@ import org.json.*;
 /**
  * Stores information related to a movie.
  */
-public class Movie {
+public class Movie implements Media{
 
     private String id;
     private JSONObject dBInfo;
