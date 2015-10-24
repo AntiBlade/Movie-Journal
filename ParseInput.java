@@ -1,3 +1,4 @@
+
 /**
  * Take input from User
  * 
@@ -6,11 +7,18 @@
  */
 public class ParseInput
 {
-   public static String parse(String input){
-       String[] words = input.split(" ");
-       
+   public static boolean parse(String input){
+       String[] words = input.split("\\S");
        switch(words[0].toLowerCase()){
-        case: "search":
+        case "search":
+            if(words[1].equals("online")){
+                //Search the database
+                reConcat(String[] a, String s, int first)
+            }else if(words[1].equals("local")){
+                
+            } else{
+            
+            }
             
         break;
         case "add":
@@ -22,10 +30,17 @@ public class ParseInput
         case "remove":
         
         break;
-       }
-     //Add Private Functions
+    }
+    return true;//Correct Just for compiler
    }
-   
-   
-  
+   private static String reConcat(String[] a, String s, int first){
+       String out = "";
+       for(int i = first; i < a.length; i++){
+           out += a[i] + s;
+       }
+       return out;
+   }
+      private static String reConcat(String[] a){
+       return reConcat(a, " ", 0);
+   }
 }
