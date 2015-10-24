@@ -1,3 +1,5 @@
+import java.util.Date;
+
 /*
  * Entry.java
  * Purpose: Contains a Media and user-entered values
@@ -10,10 +12,18 @@ public class Entry {
     private double userRating;
     private String userReview;
     private int timesSeen;
-    private int dateSeen;
+    private Date dateSeen;
+    private Date dateEntered;
     private String entryDescription;
     private int[] location = new int[2];
     // TODO: Add more features
+
+    public Entry(JSONObject j) {
+        if (j.getString("Type").equals("movie")) {
+            item = new Movie(j);
+        }
+        dateEntered = new Date(Date.getTime());
+    }
 
     public String toString() {
         String s = "";
@@ -21,7 +31,7 @@ public class Entry {
         s += "\n\t" + item.getDatum("Director");
 		s += "\n\t" + item.getDatum("Released");
         s += "\n\t" + item.getDatum("Plot").substring(0, 30) + "....";
-        if (entryDescription) s += "\n\t" + entryDescription;
+        if (!entryDescription.equals("")) s += "\n\t" + entryDescription;
 
         return s;
     }
@@ -91,12 +101,12 @@ public class Entry {
     public int getTimesSeen() {return timesSeen;}
 
     /*
-     * setDateSeen
+      * setDateSeen
      * Purpose: Set the dateSeen field
-     * Parameters: (int) newDate
+     * Parameters: (int) year, (int) month, (int) day
      * Returns: Nothing (sets a value) 
      */
-    public void setDateSeen(int newDate) {dateSeen = newDate;}
+    public void setDateSeen(int year, int month, int day) {dateSeen = new Date(year, month, day);}
 
     /*
      * getDateSeen
@@ -104,7 +114,22 @@ public class Entry {
      * Parameters: None
      * Returns: The value in dateSeen
      */
-    public int getDateSeen() {return dateSeen;}
+    public Date getDateSeen() {return dateSeen;}
+    /*
+      * setDateEntered
+     * Purpose: Set the dateEntered field
+     * Parameters: (int) year, (int) month, (int) day
+     * Returns: Nothing (sets a value) 
+     */
+    public void setDateEntered(int year, int month, int day) {dateEntered = new Date(year, month, day);}
+
+    /*
+     * getDateEntered
+     * Purpose: Gets the value in dateEntered
+     * Parameters: None
+     * Returns: The value in dateEntered
+     */
+    public Date getDateEntered() {return dateEntered;}
 
     /*
      * setEntryDescription
