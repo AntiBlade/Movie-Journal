@@ -35,6 +35,7 @@ public class Database {
      *                      given name
      */
     public static JSONObject getByName(String name) {
+        name.replace(' ', '+');
         URL s;
         try{
             s = new URL(DBURL + "t=" + name + DBPARAMS);
@@ -54,6 +55,7 @@ public class Database {
      *                                 with the given name
      */
     public static ArrayList<JSONObject> searchByQuery(String query) {
+		name.replace(' ', '+');
 		URL s;
 		try{
 		    s = new URL(DBURL + "s=" + query + DBPARAMS);
@@ -82,7 +84,8 @@ public class Database {
      *                      given name
      */
     public static JSONObject getByName(String name, String type) {
-        URL s;
+        name.replace(' ', '+');
+		URL s;
         try{
             s = new URL(DBURL + "t=" + name + DBPARAMS + "&type=" + type);
         }
@@ -102,6 +105,7 @@ public class Database {
      *                                 with the given name
      */
     public static ArrayList<JSONObject> searchByQuery(String query, String type) {
+		name.replace(' ', '+');
 		URL s;
 		try{
 		    s = new URL(DBURL + "s=" + query + DBPARAMS + "&type=" + type);
