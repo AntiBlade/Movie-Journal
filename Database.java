@@ -55,7 +55,7 @@ public class Database {
      *                                 with the given name
      */
     public static ArrayList<JSONObject> searchByQuery(String query) {
-		name.replace(' ', '+');
+		query.replace(' ', '+');
 		URL s;
 		try{
 		    s = new URL(DBURL + "s=" + query + DBPARAMS);
@@ -105,7 +105,7 @@ public class Database {
      *                                 with the given name
      */
     public static ArrayList<JSONObject> searchByQuery(String query, String type) {
-		name.replace(' ', '+');
+		query.replace(' ', '+');
 		URL s;
 		try{
 		    s = new URL(DBURL + "s=" + query + DBPARAMS + "&type=" + type);
