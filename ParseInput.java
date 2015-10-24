@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import JSONObject.*;
 import java.util.Arrays;
-import java.io.File;
 /**
  * Take input from User
  * 
@@ -32,10 +31,8 @@ public class ParseInput
             done = true;
         
     } else if (test.equals("load")) {
-        if (words.length == 2 && new File(words[1]).exists())
-        	current = JournalEncoder.decodeJournal(words[1]);        
-        else
-            System.out.println("you done goofed"); // placeholder
+            //load new journal from filename words[1]
+        
     }
         return done;
     }
@@ -63,30 +60,12 @@ public class ParseInput
 	return list;
     }
 
+    private ArrayList<Entry> searchLoc(String[] query) {
+	ArrayList<Entry> list = current.search(query);
+	return list;
+    }
+
     private void search(String[] words) {
-<<<<<<< HEAD
-    String search;
-    if(words[1].equals("online")){
-        search = reConcat(words, " ", 2);
-        searchDB(search);
-    } else if(words[1].equals("local")){
-        search = reConcat(words, " ", 2);
-    } else {
-        search = reConcat(words, " ", 1);
-    }
-    }
-    
-    private void view(String[] words){
-        if(words.length==1){
-            System.out.println(current);
-        } else {
-            String[] a = Arrays.copyOfRange(words, 1, words.length);
-            ArrayList<Entry> b = searchLoc(a);
-            for(Entry c:b){
-                System.out.println(b);
-            }
-        }
-=======
 	String search;
 	if(words[1].equals("online")){
 	    search = reConcat(words, " ", 2);
@@ -96,13 +75,23 @@ public class ParseInput
 	} else {
 	    search = reConcat(words, " ", 1);
 	}
->>>>>>> e4c37f553d3e14943e3acff1922f12b5e36b5bb1
+    }
+
+    private void view(String[] words) {
+	if (words.length == 1)
+	    System.out.println(current);
+	else {
+	    String[] a = Arrays.copyOfRange(words, 1, words.length);
+	    ArrayList<Entry> b = searchLoc(a);
+	    for (Entry c : b) 
+		System.out.println(b);
+	}
     }
 
     private void remove(String[] words) {
 	if (current.getEntries().size() > 0) {
 	    if (words.length > 1) {
-		ArrayList<Entry> results = searchLoc(words[1]);
+		ArrayList<Entry> results = searchLoc(words);
 		for (int i = 0; i < results.size(); ++i)
 		    System.out.println(i+1 + ": " + results.get(i) + "\n");
 		
