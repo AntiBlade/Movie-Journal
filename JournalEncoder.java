@@ -11,7 +11,7 @@ public class JournalEncoder {
         if (!file.exists())
             file.createNewFile();
 
-        Writer writer = new FileWriter(file);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
         writer.write("owner=\n" + j.getOwner());
         writer.write("\nentries=");
@@ -27,15 +27,17 @@ public class JournalEncoder {
             writer.write("\nentryDescription=\n" + e.getEntryDescription());
             writer.write("\nlocation=\n" + e.getLocation()[0] + "\n" + e.getLocation()[1]);
         }
+        writer.close();
         } catch (IOException e) {throw new IllegalArgumentException();}
     }
 
     public static Journal decodeJournal(String filename) {
         Scanner file = new Scanner(filename);
+        ArrayList<Entry> entries = new ArrayList<Entry>();
         file.nextLine();
         String owner = file.nextLine();
-        file.nextLine();
-        ArrayList<Entry> entries = new ArrayList<Entry>();
+        if (file.hasNextLine())
+        	file.nextLine();
         while (file.hasNextLine()) {
             file.nextLine();
             String id = file.nextLine();
@@ -68,6 +70,7 @@ public class JournalEncoder {
 
             entries.add(e);
         }
+        file.close();
 
         Journal j = new Journal(owner);
         for (Entry e : entries)
