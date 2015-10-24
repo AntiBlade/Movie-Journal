@@ -13,15 +13,20 @@ public class Movie implements Media{
 	dbInfo = initialDbInfo;
     }
 
-    public void setInfo(JSONObject newDBInfo) {
+    public void setData(JSONObject newDBInfo) {
 	dbInfo = newDBInfo;
     }
 
-    public String getInfo(String tag) {
+    public String getDatum(String tag) {
 	try {
 	    return dbInfo.getString(tag);
 	} catch (JSONException e) {
 	    return null;
 	}
     }
+
+    public String getId() {
+        return id;
+    }
+
 }
