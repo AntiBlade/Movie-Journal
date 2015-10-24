@@ -53,9 +53,10 @@ public class ParseInput
     }
     private String reConcat(String[] a, String s, int first){
         String out = "";
-        for(int i = first; i < a.length; i++){
+        for(int i = first; i < a.length-1; i++){
             out += a[i] + s;
         }
+	out += a[a.length - 1];
         return out;
     }
       private String reConcat(String[] a){
