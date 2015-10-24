@@ -62,8 +62,10 @@ public class Database {
 		}
 		catch(MalformedURLException a){throw new IllegalArgumentException();}
 		JSONObject json = lookupURL(s);
-		if (json.getString("Response").equals("False"))
-		    return null;
+        try {
+			if (json.getString("Response").equals("False"))
+		    	return null;
+        } catch (Exception e) {}
 
 		JSONArray jsonArray = json.getJSONArray("Search");
 		ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
