@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class JournalEncoder {
 
-    public static void encodeJournal(Journal j, String filename) throws IOException {
-        File file = new File(System.getProperty("user.dir" + filename);
+    public static void encodeJournal(Journal j, String filename) {
+        try {
+        File file = new File(System.getProperty("user.dir") + filename);
         if (!file.exists())
             file.createNewFile();
 
@@ -27,6 +28,7 @@ public class JournalEncoder {
             writer.write("\nlocation=\n" + e.getLocation()[0] + "\n" + e.getLocation()[1]);
         }
         writer.write("done");
+        } catch (IOException e) {throw new IllegalArgumentException();}
     }
 
     public static Journal decodeJournal(String filename) {
