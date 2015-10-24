@@ -7,11 +7,11 @@ public class JournalEncoder {
 
     public static void encodeJournal(Journal j, String filename) {
         try {
-        File file = new File(System.getProperty("user.dir") + filename);
+        File file = new File(System.getProperty("user.dir") + "/" + filename);
         if (!file.exists())
             file.createNewFile();
 
-        Writer writer = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+        Writer writer = new FileWriter(file.getAbsoluteFile());
 
         writer.write("owner=\n" + j.getOwner());
         writer.write("\nentries=");
@@ -27,7 +27,6 @@ public class JournalEncoder {
             writer.write("\nentryDescription=\n" + e.getEntryDescription());
             writer.write("\nlocation=\n" + e.getLocation()[0] + "\n" + e.getLocation()[1]);
         }
-        writer.write("done");
         } catch (IOException e) {throw new IllegalArgumentException();}
     }
 
@@ -36,12 +35,9 @@ public class JournalEncoder {
         file.nextLine();
         String owner = file.nextLine();
         file.nextLine();
-        boolean done = false;
         ArrayList<Entry> entries = new ArrayList<Entry>();
-        while (!done) {
-            if (file.nextLine().equals("done")) {
-                break;
-            }
+        while (file.hasNextLine()) {
+            file.nextLine();
             String id = file.nextLine();
             file.nextLine();
 			double userRating = Double.parseDouble(file.nextLine());
