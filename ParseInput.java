@@ -11,15 +11,15 @@ public class ParseInput
        String[] words = input.split("\\S");
        switch(words[0].toLowerCase()){
         case "search":
+           String search;
             if(words[1].equals("online")){
                 //Search the database
-                String search = reConcat(words, " ", 2);
+                search = reConcat(words, " ", 2);
             }else if(words[1].equals("local")){
-                
+                search = reConcat(words, " ", 2);
             } else{
-            
+                 search = reConcat(words, " ", 1);
             }
-            
         break;
         case "add":
             
