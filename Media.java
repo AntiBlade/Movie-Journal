@@ -7,6 +7,18 @@
 import org.json.*;
 
 interface Media {
-    void setInfo(JSONObect newDBInfo);
+    /**
+     * Sets the information in this implementation of 
+     * Media. 
+     * @param JSONObject newDBInfo - the JSONObject from the online database
+     * @return N/A
+     */
+    void setInfo(JSONObject newDBInfo);
+
+    /**
+     * Gets the info corresponding to a given tag
+     * @param String tag - the particular property requested 
+     * @return String - the value corresponding to the property 
+     */
     String getInfo(String tag);
 }
