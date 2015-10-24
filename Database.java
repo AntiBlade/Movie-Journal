@@ -54,21 +54,21 @@ public class Database {
      *                                 with the given name
      */
     public static ArrayList<JSONObject> searchByQuery(String query) {
-	URL s;
-	try{
-	    s = new URL(DBURL + "s=" + query + DBPARAMS);
-	}
-	catch(MalformedURLException a){throw new IllegalArgumentException();}
-	JSONObject json = lookupURL(s);
-	if (json.getString("Response").equals("False"))
-	    return null;
+		URL s;
+		try{
+		    s = new URL(DBURL + "s=" + query + DBPARAMS);
+		}
+		catch(MalformedURLException a){throw new IllegalArgumentException();}
+		JSONObject json = lookupURL(s);
+		if (json.getString("Response").equals("False"))
+		    return null;
 
-	JSONArray jsonArray = json.getJSONArray("Search");
-	ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
-	for (int i = 0; i < jsonArray.length(); i++) {
-	    jsonArrList.add(jsonArray.getJSONObject(i));
-	}
-	return jsonArrList;
+		JSONArray jsonArray = json.getJSONArray("Search");
+		ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
+		for (int i = 0; i < jsonArray.length(); i++) {
+		    jsonArrList.add(jsonArray.getJSONObject(i));
+		}
+		return jsonArrList;
     }
 
     // overloads to search by type
@@ -102,21 +102,21 @@ public class Database {
      *                                 with the given name
      */
     public static ArrayList<JSONObject> searchByQuery(String query, String type) {
-	URL s;
-	try{
-	    s = new URL(DBURL + "s=" + query + DBPARAMS + "&type=" + type);
-	}
-	catch(MalformedURLException a){throw new IllegalArgumentException();}
-	JSONObject json = lookupURL(s);
-	if (json.getString("Response").equals("False"))
-	    return null;
+		URL s;
+		try{
+		    s = new URL(DBURL + "s=" + query + DBPARAMS + "&type=" + type);
+		}
+		catch(MalformedURLException a){throw new IllegalArgumentException();}
+		JSONObject json = lookupURL(s);
+		if (json.getString("Response").equals("False"))
+		    return null;
 
-	JSONArray jsonArray = json.getJSONArray("Search");
-	ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
-	for (int i = 0; i < jsonArray.length(); i++) {
-	    jsonArrList.add(jsonArray.getJSONObject(i));
-	}
-	return jsonArrList;
+		JSONArray jsonArray = json.getJSONArray("Search");
+		ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
+		for (int i = 0; i < jsonArray.length(); i++) {
+		    jsonArrList.add(jsonArray.getJSONObject(i));
+		}
+		return jsonArrList;
     }
 
     /**
@@ -127,12 +127,11 @@ public class Database {
     private static JSONObject lookupURL(URL dbEntry) {
         try{
             URLConnection dbConnect = dbEntry.openConnection();
-	    BufferedReader in;
+	    	BufferedReader in;
             in = new BufferedReader(
                            new InputStreamReader(
                            dbConnect.getInputStream()));
-	return new JSONObject(in.readLine());
-        }
-        catch(IOException a){throw new IllegalArgumentException();}
+			return new JSONObject(in.readLine());
+        } catch(IOException a) {throw new IllegalArgumentException();}
     }
 }
