@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import JSONObject.*;
+import java.util.Arrays;
 /**
  * Take input from User
  * 
@@ -15,37 +16,38 @@ public class ParseInput
    }
 
     public boolean parse(String input, Scanner console){
-        String[] words = input.split("\\S");
-        boolean done = false;
-        switch(words[0].toLowerCase()){
-        case "search":
+        System.out.println("Got into parse");
+	String[] words = input.split(" ");
+	boolean done = false;
+	String test = words[0].toLowerCase();
+	if (test.equals("search")) {
            System.out.println("Got to case search");
-            String search;
-            if(words[1].equals("online")){
-                search = reConcat(words, " ", 2);
-                searchDB(search);
-            }else if(words[1].equals("local")){
-                search = reConcat(words, " ", 2);
-            } else{
-                search = reConcat(words, " ", 1);
-            }
+	   String search;
+	   if(words[1].equals("online")){
+	       search = reConcat(words, " ", 2);
+	       searchDB(search);
+	   }else if(words[1].equals("local")){
+	       search = reConcat(words, " ", 2);
+	   } else{
+	       search = reConcat(words, " ", 1);
+	   }
             
-        break;
-        case "add":
+	    
+	} else if (test.equals("add")) {
             
-        break;
-        case "view":
         
-        break;
-        case "remove":
+	} else if (test.equals("view")) {
         
-        break;
-        case "quit":
+       
+        } else if (test.equals("remove")) {
+        
+       
+	} else if (test.equals("quit")) {
             done = true;
-        break;
-        case "load":
+        
+        } else if (test.equals("load")) {
             //load new journal from filename words[1]
-        break;
+        
         }
         return done;
     }

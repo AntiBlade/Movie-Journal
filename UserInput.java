@@ -17,8 +17,9 @@ public class UserInput
         Scanner console = new Scanner(System.in);
         ParseInput parser = new ParseInput(new Journal("Caleb"));
         boolean done = false;
-        while(!done)
+        while(!done) {
             done = parser.parse(getInput(console), console);
+	}
     }
 
     /**
