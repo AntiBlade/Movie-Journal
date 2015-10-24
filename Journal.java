@@ -4,7 +4,7 @@ import java.util.HashSet;
 public class Journal
 {
     ArrayList<Entry> entries = new ArrayList<Entry>();
-    private String owner;
+    private String owner = "";
 
     public Journal(String owner) {
         this.owner = owner;
