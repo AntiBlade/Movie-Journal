@@ -1,8 +1,18 @@
+import java.util.ArrayList;
+import java.util.Date;
+import java.io.*;
+import java.util.Scanner;
+
 public class JournalEncoder {
 
-    public static void encodeJournal(Journal j, String filename) {
-        Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"));
-        writer.write("owner=\n" + j.getOwner);
+    public static void encodeJournal(Journal j, String filename) throws IOException {
+        File file = new File(filename);
+        if (!file.exists())
+            file.createNewFile();
+
+        Writer writer = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+
+        writer.write("owner=\n" + j.getOwner());
         writer.write("\nentries=");
         for (Entry e : j.getEntries()) {
             writer.write("\nentry=");
@@ -32,33 +42,33 @@ public class JournalEncoder {
             }
             String id = file.nextLine();
             file.nextLine();
-			double userRating = file.nextLine();
+			double userRating = Double.parseDouble(file.nextLine());
 			file.nextLine();
 			String userReview = file.nextLine();
 			file.nextLine();
-			int timesSeen = file.nextLine();
+			int timesSeen = Integer.parseInt(file.nextLine());
 			file.nextLine();
-			int dateSeen = file.nextLine();
+			long dateSeen = Long.parseLong(file.nextLine());
 			file.nextLine();
-			int dateEntered = file.nextLine();
+			long dateEntered = Long.parseLong(file.nextLine());
 			file.nextLine();
 			String entryDescription = file.nextLine();
 			file.nextLine();
 			int[] location = new int[2];
-			location[0] = file.nextLine();
-			location[1] = file.nextLine();
+			location[0] = Integer.parseInt(file.nextLine());
+			location[1] = Integer.parseInt(file.nextLine());
 			
             Entry e = new Entry(Database.getById(id));
             e.setId(id);
             e.setUserRating(userRating);
             e.setUserReview(userReview);
             e.setTimesSeen(timesSeen);
-            e.setDateSeen(new Date(dateSeen));
-            e.setDateEntered(new Date(dateEntered));
+            e.setDateSeen(dateSeen);
+            e.setDateEntered(dateEntered);
             e.setEntryDescription(entryDescription);
             e.setLocation(location);
 
-            entries.append(e);
+            entries.add(e);
         }
 
         Journal j = new Journal(owner);

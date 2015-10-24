@@ -129,6 +129,15 @@ public class Entry {
     public void setDateSeen(int year, int month, int day) {dateSeen = new Date(year, month, day);}
 
     /*
+      * setDateSeen
+     * Purpose: Set the dateSeen field
+     * Parameters: (long) epoch time
+     * Returns: Nothing (sets a value) 
+     */
+    public void setDateSeen(long time) {dateSeen = new Date(time);}
+
+
+    /*
      * getDateSeen
      * Purpose: Gets the value in dateSeen
      * Parameters: None
@@ -142,6 +151,14 @@ public class Entry {
      * Returns: Nothing (sets a value) 
      */
     public void setDateEntered(int year, int month, int day) {dateEntered = new Date(year, month, day);}
+
+/*
+      * setDateEntered
+     * Purpose: Set the dateEntered field
+     * Parameters: (long) epoch time in ms
+     * Returns: Nothing (sets a value) 
+     */
+    public void setDateEntered(long time) {dateEntered = new Date(time);}
 
     /*
      * getDateEntered
