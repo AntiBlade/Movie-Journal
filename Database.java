@@ -107,6 +107,7 @@ public class Database {
      *                                 with the given name
      */
     public static ArrayList<JSONObject> searchByQuery(String query, String type) {
+	query.trim();
 		query.replace(' ', '+');
 		URL s;
 		try{
