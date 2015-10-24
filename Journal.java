@@ -60,6 +60,8 @@ public class Journal
 	return found;
     }
 
+    /*
+
     /* 
      * removeEntry
      * Purpose: Removes an entry from entries
