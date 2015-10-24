@@ -113,7 +113,7 @@ public class ParseInput
 	    ArrayList<Entry> result = view(words);
 	    System.out.println("Enter the number of the entry you wish to remove, -1 to cancel: ");
 	    int input = cur.nextInt();
-	    if (input < words.length) {
+	    if (input-1 < result.size()) {
 		current.removeEntry(result.get(input-1).getId());
 	    } else {
 		System.out.println("No entries found; nothing to remove!");
@@ -127,7 +127,7 @@ public class ParseInput
 	    System.out.println(i+1 + ": " + result.get(i));
 	System.out.println("Enter the number of the entry you wish to add, -1 to cancel: ");
 	int input = cur.nextInt();
-	if (input < words.length) 
+	if (input-1 < result.size()) 
 	    current.addEntry(result.get(input-1));
 	else {
 	    System.out.println("No entries found; nothing to add!");
