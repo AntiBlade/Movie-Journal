@@ -16,12 +16,10 @@ public class ParseInput
     }
 
     public boolean parse(String input, Scanner console){
-        System.out.println("Got into parse");
 		String[] words = input.split(" ");
 		boolean done = false;
 		String test = words[0].toLowerCase();
 		if (test.equals("search")) {
-           System.out.println("Got to case search");
 	    String search;
 	    if(words[1].equals("online")){
 	        search = reConcat(words, " ", 2);
@@ -64,7 +62,6 @@ public class ParseInput
     }
 
     private void searchDB(String query) {
-        System.out.println("Got to searchDB");
         ArrayList<JSONObject> list = Database.searchByQuery(query);
         for(JSONObject a : list){
             System.out.println(new Entry(a) + "\n");
