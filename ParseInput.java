@@ -9,17 +9,18 @@ public class ParseInput
 {
     public static boolean parse(String input, Scanner console){
        String[] words = input.split("\\S");
+       boolean ret = true;
        switch(words[0].toLowerCase()){
         case "search":
+           String search;
             if(words[1].equals("online")){
                 //Search the database
-                String search = reConcat(words, " ", 2);
+                search = reConcat(words, " ", 2);
             }else if(words[1].equals("local")){
-                
+                search = reConcat(words, " ", 2);
             } else{
-            
+                 search = reConcat(words, " ", 1);
             }
-            
         break;
         case "add":
             
@@ -31,13 +32,13 @@ public class ParseInput
         
         break;
        case "quit":
-           return false;
-           break;
+           ret = false;
+       break;
        case "load":
            //load new journal from filename words[1]
-           break;
+       break;
     }
-    return true;//Correct Just for compiler
+    return ret;
    }
    private static String reConcat(String[] a, String s, int first){
        String out = "";
