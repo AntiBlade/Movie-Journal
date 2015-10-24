@@ -14,7 +14,7 @@ public class ParseInput
     Journal current;
     Scanner console;
 
-    ParseInput(){
+    ParseInput(Scanner console){
         System.out.println("Whose journal is this?");
         this.console = console;
         current = new Journal(UserInput.getInput(console, "Name"));
