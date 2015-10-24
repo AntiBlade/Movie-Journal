@@ -15,9 +15,9 @@ public class UserInput
      */
     public static void userInput() {
         Scanner console = new Scanner(System.in);
-        done = false;
+        boolean done = false;
         while(!done)
-            done = parseInput(getInput(console), console);
+            done = ParseInput.parse(getInput(console), console);
     }
 
     /**
