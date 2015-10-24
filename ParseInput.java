@@ -86,7 +86,10 @@ public class ParseInput
             System.out.println(current);
         } else {
             String[] a = Arrays.copyOfRange(words, 1, words.length);
-            searchLoc(a);
+            ArrayList<Entry> b = searchLoc(a);
+            for(Entry c:b){
+                System.out.println(b);
+            }
         }
     }
 
