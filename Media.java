@@ -13,12 +13,14 @@ interface Media {
      * @param JSONObject newDBInfo - the JSONObject from the online database
      * @return N/A
      */
-    void setInfo(JSONObject newDBInfo);
+    void setData(JSONObject newDBInfo);
 
     /**
      * Gets the info corresponding to a given tag
      * @param String tag - the particular property requested 
      * @return String - the value corresponding to the property 
      */
-    String getInfo(String tag);
+    String getDatum(String tag);
+
+    String getId();
 }
