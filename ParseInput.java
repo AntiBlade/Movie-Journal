@@ -78,7 +78,8 @@ public class ParseInput
     private void search(String[] words) {
 	String search;
 	if(words[1].equals("online")){
-	    search = reConcat(words, " ", 2);
+	    search = reConcat(words, "+", 2);
+	    System.out.println(search.length());
 	    searchDB(search);
 	} else if(words[1].equals("local")){
 	    search = reConcat(words, " ", 2);
