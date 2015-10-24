@@ -11,7 +11,7 @@ public class JournalEncoder {
         if (!file.exists())
             file.createNewFile();
 
-        Writer writer = new FileWriter(file.getAbsoluteFile());
+        Writer writer = new FileWriter(file);
 
         writer.write("owner=\n" + j.getOwner());
         writer.write("\nentries=");
