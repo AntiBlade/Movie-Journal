@@ -110,7 +110,9 @@ public class ParseInput
     
     private void remove(String[] words, Scanner console) {
 	if (current.getEntries().size() > 0) {
-	    ArrayList<Entry> result = view(words);
+	    ArrayList<Entry> result = searchLoc(reConcat(words, " ", 1));
+	    for (int i = 0; i < result.size(); ++i)
+		System.out.println(i+1 + ": " + result.get(i));
 	    System.out.println("Enter the number of the entry you wish to remove, -1 to cancel: ");
 	    int input = Integer.parseInt(UserInput.getInput(console, "Entry#"));
 	    if (input-1 < result.size()) {
