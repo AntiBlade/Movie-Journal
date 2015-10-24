@@ -13,7 +13,7 @@ interface Media {
      * @param JSONObject newDBInfo - the JSONObject from the online database
      * @return N/A
      */
-    void setInfo(JSONObect newDBInfo);
+    void setInfo(JSONObject newDBInfo);
 
     /**
      * Gets the info corresponding to a given tag
