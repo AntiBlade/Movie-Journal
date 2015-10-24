@@ -11,14 +11,14 @@ public class Movie implements Media{
      * 
      */
     public void setInfo(JSONObject newDBInfo) {
-	newDBInfo = dBInfo;
+	newDBInfo = dbInfo;
     }
 
     /**
      */
     public String getInfo(String tag) {
 	try {
-	    return dBInfo.get(tag);
+	    return dbInfo.get(tag);
 	} catch (JSONException e) {
 	    return null;
 	}
