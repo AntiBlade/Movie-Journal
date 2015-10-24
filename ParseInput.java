@@ -26,11 +26,11 @@ public class ParseInput
 	if (test.equals("search")) {
 	    search(words);
 	} else if (test.equals("add")) {
-	    add(words);
+	    add(words, console);
 	} else if (test.equals("view")) {
 	    view(words);
 	} else if (test.equals("remove")) {
-	    remove(words);
+	    remove(words, console);
 	} else if (test.equals("quit")) {
             done = true;
 	} else if (test.equals("save")) {
@@ -108,11 +108,11 @@ public class ParseInput
 	}
     }
     
-    private void remove(String[] words) {
+    private void remove(String[] words, Scanner console) {
 	if (current.getEntries().size() > 0) {
 	    ArrayList<Entry> result = view(words);
 	    System.out.println("Enter the number of the entry you wish to remove, -1 to cancel: ");
-	    int input = Integer.parseInt(UserInput.getInput("Entry#"));
+	    int input = Integer.parseInt(UserInput.getInput(console, "Entry#"));
 	    if (input-1 < result.size()) {
 		current.removeEntry(result.get(input-1).getId());
 	    } else {
@@ -120,13 +120,13 @@ public class ParseInput
 	    }
 	}
     }
-    private void add(String[] words) {
+    private void add(String[] words, Scanner console) {
 	
 	ArrayList<Entry> result = searchDB_return(reConcat(words, "+", 1));
 	for (int i = 0; i < result.size(); ++i)
 	    System.out.println(i+1 + ": " + result.get(i));
 	System.out.println("Enter the number of the entry you wish to add, -1 to cancel: ");
-	int input = Integer.parseInt(userInput("Entry#"));
+	int input = Integer.parseInt(userInput(console, "Entry#"));
 	if (input-1 < result.size()) 
 	    current.addEntry(result.get(input-1));
 	else {
