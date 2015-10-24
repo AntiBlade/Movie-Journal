@@ -4,7 +4,7 @@
  *      By: Caleb Foley, Harrison Keiser, Chris Phifer
  *      On: October 23, 2015
  */
-import org.json.*;
+import JSONObject.*;
 
 interface Media {
     /**
