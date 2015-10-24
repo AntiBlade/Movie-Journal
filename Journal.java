@@ -25,6 +25,7 @@ public class Journal
 	    if (entries.get(i).getItem().getId() == id)
 		return i;
 	}
+    return -1;
     }
 
     /*
@@ -38,6 +39,7 @@ public class Journal
 	    if (entries.get(i) == entry)
 		return i;
 	}
+    return -1;
     }
 
     /* 
@@ -48,8 +50,8 @@ public class Journal
      */
     public ArrayList<Entry> search(String query) {
 	ArrayList<Entry> found = new ArrayList<Entry>();
-	for (int i = 0; i < entries.size; ++i) {
-	    current = entries.get(i);
+	for (int i = 0; i < entries.size(); ++i) {
+	    Entry current = entries.get(i);
 	    if (current.getItem().getDatum("Title").indexOf(query) == -1)
 		continue;
 	    else
@@ -65,7 +67,7 @@ public class Journal
      * Returns: The Entry that was removed
      */
     public Entry removeEntry(String id) {
-	return entries.remove(indexOf(id))
+	return entries.remove(indexOf(id));
     }
 
     /* 
@@ -75,7 +77,7 @@ public class Journal
      * Returns: The Entry if it's unique, null otherwise
      */
     public Entry getEntry(String name) {
-	results = search(name);
+	ArrayList<Entry> results = search(name);
 	if (results.size() == 1)
 	    return results.get(0);
 	else
