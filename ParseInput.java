@@ -50,8 +50,12 @@ public class ParseInput
 
     private void searchDB(String query) {
         ArrayList<JSONObject> list = Database.searchByQuery(query);
+        if (list == null)
+            return;
         for(JSONObject a : list){
-            System.out.println(new Entry(a) + "\n");
+            if (a != null) {
+				System.out.println(new Entry(a) + "\n");
+            }
         }
     }
    
@@ -79,5 +83,13 @@ public class ParseInput
             String[] a = Arrays.copyOfRange(words, 1, words.length);
             searchLoc(a);
         }
+    }
+
+    private void remove(String[] words) {
+	if (words.length > 1) {
+	    ArrayList<Entry> results = searchLoc(words[1]);
+	    for (int i = 0; i < results.size(); ++i)
+		System.out.println(i+1 + ": " + results.get(i) + "\n");
+	}
     }
 }
