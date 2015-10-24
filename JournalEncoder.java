@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class JournalEncoder {
 
-    public static void encodeJournal(Journal j, String filename) throws IOException {
+    public static void encodeJournal(Journal j, String filename) {
         try {
         File file = new File(System.getProperty("user.dir") + filename);
         if (!file.exists())
