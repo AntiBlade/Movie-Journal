@@ -13,7 +13,7 @@ public class JournalEncoder {
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-        writer.write("owner=\n" + j.getOwner());
+        writer.write(j.getOwner());
         writer.write("\nentries=");
         for (Entry e : j.getEntries()) {
             writer.write("\nentry=");
@@ -34,7 +34,6 @@ public class JournalEncoder {
     public static Journal decodeJournal(String filename) {
         Scanner file = new Scanner(filename);
         ArrayList<Entry> entries = new ArrayList<Entry>();
-        file.nextLine();
         String owner = file.nextLine();
         if (file.hasNextLine())
         	file.nextLine();
