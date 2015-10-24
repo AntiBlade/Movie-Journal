@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Database {
 
-    private static final String DBURL = "http://www.ombdapi.com/?";
+    private static final String DBURL = "http://www.omdbapi.com/?";
     private static final String DBPARAMS = "&plot=short&r=json&tomatoes=true";
 
     /**
