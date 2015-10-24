@@ -9,14 +9,15 @@ import java.util.Date;
  */
 
 public class Entry {
-    private Media item;
-    private double userRating;
-    private String userReview;
-    private int timesSeen;
-    private Date dateSeen;
-    private Date dateEntered;
-    private String entryDescription;
-    private int[] location = new int[2];
+    private String id = null;
+    private Media item = null;
+    private double userRating = -1.0;
+    private String userReview = "";
+    private int timesSeen = 0;
+    private Date dateSeen = null;
+    private Date dateEntered = null;
+    private String entryDescription = "";
+    private int[] location = {0,0};
     // TODO: Add more features
 
     public Entry(JSONObject j) {
@@ -35,6 +36,24 @@ public class Entry {
         if (!entryDescription.equals("")) s += "\n\t" + entryDescription;
 
         return s;
+    }
+
+    /*
+     * setId
+     * Purpose: sets the imdb id
+     * Parameters: (String) newId
+     */
+    public void setId(String newId) {
+        id = newId;
+    }
+
+    /*
+     * getId
+     * purpose: gets the imdb id
+     * returns: the id of this entry in imdb
+     */
+    public String getId() {
+        return id;
     }
 
     /*
