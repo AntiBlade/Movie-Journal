@@ -90,7 +90,7 @@ public class ParseInput
     private ArrayList<Entry> view(String[] words) {
 	if (words.length == 1) {
 	    System.out.println(current);
-	    return current;
+	    return current.getEntries();
 	} else {
 	    String[] a = Arrays.copyOfRange(words, 1, words.length);
 	    ArrayList<Entry> b = searchLoc(a);
