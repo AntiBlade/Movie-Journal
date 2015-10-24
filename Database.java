@@ -81,7 +81,7 @@ public class Database {
      * @return JSONObject - the information most closely associated with the
      *                      given name
      */
-    public static JSONObject getByName(String name, string type) {
+    public static JSONObject getByName(String name, String type) {
         URL s;
         try{
             s = new URL(DBURL + "t=" + name + DBPARAMS + "&type=" + type);
