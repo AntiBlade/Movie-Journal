@@ -13,7 +13,7 @@ public class Database {
      * @param String id - the IMDb ID of the title
      * @return JSONObject - the information associated with the given id
      */
-    public JSONObject searchId(String id) {
+    public static JSONObject searchId(String id) {
     URL s;
     try{
         s = new URL(DBURL + "i=" + id + DBPARAMS);
@@ -32,7 +32,7 @@ public class Database {
      * @return JSONObject - the information most closely associated with the
      *                      given name
      */
-    public JSONObject searchName(String name) {
+    public static JSONObject searchName(String name) {
     URL s;
     try{
         s = new URL(DBURL + "t=" + name + DBPARAMS);
@@ -49,7 +49,7 @@ public class Database {
      * @param URL dBentry - the url to get JSON from
      * @return JSONObject - the JSON data from the URL as a JSONObject
      */
-    private JSONObject lookupURL(URL dbEntry) {
+    private static JSONObject lookupURL(URL dbEntry) {
     try{
 	URLConnection dbConnect = dbEntry.openConnection();
 	BufferedReader in;
