@@ -1,24 +1,25 @@
-import org.json.*;
+import JSONObject.*;
+
 /**
  * Stores information related to a movie.
  */
 public class Movie implements Media{
 
     private String id;
-    private JSONObject dBInfo;
+    private JSONObject dbInfo;
 
     /**
      * 
      */
     public void setInfo(JSONObject newDBInfo) {
-	newDBInfo = dBInfo;
+	dbInfo = newDBInfo;
     }
 
     /**
      */
     public String getInfo(String tag) {
 	try {
-	    return dBInfo.get(tag);
+	    return dbInfo.getString(tag);
 	} catch (JSONException e) {
 	    return null;
 	}
