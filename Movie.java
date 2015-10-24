@@ -29,4 +29,12 @@ public class Movie implements Media{
         return id;
     }
 
+    public String toString() {
+        String s = "";
+        s += getDatum("Title");
+        s += "\n\t" + getDatum("Released");
+        s += "\n\t" + getDatum("Plot").substring(0, 45) + "....";
+        return s;
+    }
+
 }

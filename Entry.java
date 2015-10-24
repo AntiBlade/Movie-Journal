@@ -31,10 +31,11 @@ public class Entry {
 
     public String toString() {
         String s = "";
-        s += item.getDatum("Title");
-        s += "\n\t" + item.getDatum("Director");
-		s += "\n\t" + item.getDatum("Released");
-        s += "\n\t" + item.getDatum("Plot").substring(0, 30) + "....";
+        // s += item.getDatum("Title");
+        // s += "\n\t" + item.getDatum("Director");
+		// s += "\n\t" + item.getDatum("Released");
+        // s += "\n\t" + item.getDatum("Plot").substring(0, 30) + "....";
+        s += item;
         if (!entryDescription.equals("")) s += "\n\t" + entryDescription;
 
         return s;
