@@ -1,5 +1,6 @@
 import JSONObject.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 public class Journal
 {
     ArrayList<Entry> entries = new ArrayList<Entry>();
@@ -79,18 +80,54 @@ public class Journal
      * Returns: ArrayList of entries having the query in their title
      */
     public ArrayList<Entry> search(String query) {
-	ArrayList<Entry> found = new ArrayList<Entry>();
-	for (int i = 0; i < entries.size(); ++i) {
-	    Entry current = entries.get(i);
-	    if (current.getItem().getDatum("Title").indexOf(query) == -1)
-		continue;
-	    else
-		found.add(current);
-	}
+	String[] words = query.split("\\S");
+	if (words.length > 1) {
+	    return search(words);
+	} else {
+	    ArrayList<Entry> found = new ArrayList<Entry>();
+	    for (int i = 0; i < entries.size(); ++i) {
+		Entry current = entries.get(i);
+		if (current.getItem().getDatum("Title").indexOf(query) == -1)
+		    continue;
+		else
+		    found.add(current);
+	    }
 	return found;
+	}
     }
 
     /*
+     * search
+     * Purpose: Searches for entries by keyword
+     * Parameters: (String[]) words
+     * Returns: ArrayList of Entries having keywords in title
+     */
+    public ArrayList<Entry> search(String[] words) {
+	ArrayList<Entry> results = new ArrayList<Entry>();
+	for (String s : words)
+	    results.addAll(search(s));
+	results = makeUnique(results);
+	return results;
+    }
+    
+    /*
+     * makeUnique
+     * Purpose: Remove duplicates from an ArrayList
+     * Parameters: (ArrayList<Entry>) list
+     * Returns: New unique ArrayList
+     */
+    private ArrayList<Entry> makeUnique(ArrayList<Entry> list) {
+	ArrayList<Entry> result = new ArrayList<Entry>();
+	HashSet<Entry> set = new HashSet<Entry>();
+
+	for (Entry e : list) {
+	    if (!set.contains(e)) {
+		result.add(e);
+		set.add(e);
+	    }
+	}
+	return result;
+    }
 
     /* 
      * removeEntry
