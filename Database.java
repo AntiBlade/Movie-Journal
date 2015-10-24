@@ -71,8 +71,53 @@ public class Database {
 	return jsonArrList;
     }
 
+    // overloads to search by type
 
+    /**
+     * Search the database for a title using the given keywords
+     * @param String name - keywords in the name of the title, separated by
+     *                      plus signs
+     * @param String type - the type of the title. can be movie, series, etc.
+     * @return JSONObject - the information most closely associated with the
+     *                      given name
+     */
+    public static JSONObject getByName(String name, string type) {
+        URL s;
+        try{
+            s = new URL(DBURL + "t=" + name + DBPARAMS + "&type=" + type);
+        }
+        catch(MalformedURLException a){throw new IllegalArgumentException();}
+        JSONObject json = lookupURL(s);
+        if (json.getString("Response").equals("False"))
+            return null;
+        return json;
+    }
 
+    /**
+     * Search the database for titles using the given keywords
+     * @param String name - keywords in the name of the title, separated by
+     *                      plus signs
+     * @param String type - the type of the title. can be movie, series, etc.
+     * @return ArrayList<JSONObject> - the JSONObjects most closely associated
+     *                                 with the given name
+     */
+    public static ArrayList<JSONObject> searchByQuery(String query, String type) {
+	URL s;
+	try{
+	    s = new URL(DBURL + "s=" + query + DBPARAMS + "&type=" + type);
+	}
+	catch(MalformedURLException a){throw new IllegalArgumentException();}
+	JSONObject json = lookupURL(s);
+	if (json.getString("Response").equals("False"))
+	    return null;
+
+	JSONArray jsonArray = json.getJSONArray("Search");
+	ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
+	for (int i = 0; i < jsonArray.length(); i++) {
+	    jsonArrList.add(jsonArray.getJSONObject(i));
+	}
+	return jsonArrList;
+    }
 
     /**
      * Get the JSON data from the given URL
