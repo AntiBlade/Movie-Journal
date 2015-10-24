@@ -1,3 +1,4 @@
+import JSONObject.*;
 import java.util.Date;
 
 /*
@@ -22,7 +23,7 @@ public class Entry {
         if (j.getString("Type").equals("movie")) {
             item = new Movie(j);
         }
-        dateEntered = new Date(Date.getTime());
+        dateEntered = new Date(System.currentTimeMillis());
     }
 
     public String toString() {
