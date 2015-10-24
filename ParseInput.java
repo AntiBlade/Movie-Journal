@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import JSONObject.*;
 import java.util.Arrays;
+import java.io.File;
 /**
  * Take input from User
  * 
@@ -31,8 +32,10 @@ public class ParseInput
             done = true;
         
     } else if (test.equals("load")) {
-            //load new journal from filename words[1]
-        
+        if (words.length == 2 && new File(words[1]).exists())
+        	current = JournalEncoder.decodeJournal(words[1]);        
+        else
+            System.out.println("you done goofed"); // placeholder
     }
         return done;
     }
