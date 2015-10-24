@@ -64,6 +64,29 @@ public class ParseInput
     }
 
     private void search(String[] words) {
+<<<<<<< HEAD
+    String search;
+    if(words[1].equals("online")){
+        search = reConcat(words, " ", 2);
+        searchDB(search);
+    } else if(words[1].equals("local")){
+        search = reConcat(words, " ", 2);
+    } else {
+        search = reConcat(words, " ", 1);
+    }
+    }
+    
+    private void view(String[] words){
+        if(words.length==1){
+            System.out.println(current);
+        } else {
+            String[] a = Arrays.copyOfRange(words, 1, words.length);
+            ArrayList<Entry> b = searchLoc(a);
+            for(Entry c:b){
+                System.out.println(b);
+            }
+        }
+=======
 	String search;
 	if(words[1].equals("online")){
 	    search = reConcat(words, " ", 2);
@@ -73,6 +96,7 @@ public class ParseInput
 	} else {
 	    search = reConcat(words, " ", 1);
 	}
+>>>>>>> e4c37f553d3e14943e3acff1922f12b5e36b5bb1
     }
 
     private void remove(String[] words) {
