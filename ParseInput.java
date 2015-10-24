@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import JSONObject.*;
 /**
  * Take input from User
  * 
@@ -7,20 +9,25 @@ import java.util.Scanner;
  */
 public class ParseInput
 {
-    public static boolean parse(String input, Scanner console){
+   Journal current;
+   ParseInput(Journal cur){
+       current = cur;
+   }
+    public boolean parse(String input, Scanner console){
        String[] words = input.split("\\S");
        boolean ret = true;
        switch(words[0].toLowerCase()){
         case "search":
            String search;
             if(words[1].equals("online")){
-                //Search the database
                 search = reConcat(words, " ", 2);
+                searchDB(search);
             }else if(words[1].equals("local")){
                 search = reConcat(words, " ", 2);
             } else{
                  search = reConcat(words, " ", 1);
             }
+            
         break;
         case "add":
             
@@ -40,18 +47,22 @@ public class ParseInput
     }
     return ret;
    }
-   private static String reConcat(String[] a, String s, int first){
+   private String reConcat(String[] a, String s, int first){
        String out = "";
        for(int i = first; i < a.length; i++){
            out += a[i] + s;
        }
        return out;
    }
-      private static String reConcat(String[] a){
+      private String reConcat(String[] a){
        return reConcat(a, " ", 0);
    }
 
-    private static void searchDB(String query) {
-        // search db
-    }
+   private void searchDB(String query) {
+        ArrayList<JSONObject> list = Database.searchByQuery(query);
+        for(JSONObject a : list){
+            System.out.println(new Entry(a) + "\n");
+        }
+   }
+   
 }
