@@ -63,7 +63,7 @@ public class Database {
 	if (json.getString("Response").equals("False"))
 	    return null;
 
-	JSONArray jsonArray = json.getJSONArray;
+	JSONArray jsonArray = json.getJSONArray("Search");
 	ArrayList<JSONObject> jsonArrList = new ArrayList<JSONObject>();
 	for (int i = 0; i < jsonArray.length(); i++) {
 	    jsonArrList.add(jsonArray.getJSONObject(i));
