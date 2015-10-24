@@ -16,18 +16,18 @@ public class ParseInput
     }
 
     public boolean parse(String input, Scanner console){
-	String[] words = input.split(" ");
-	boolean done = false;
-	String test = words[0].toLowerCase();
-	if (test.equals("search")) {
-	    search(words);
-	} else if (test.equals("add")) {
-	    
-	} else if (test.equals("view")) {
-	    
-	} else if (test.equals("remove")) {
+    String[] words = input.split(" ");
+    boolean done = false;
+    String test = words[0].toLowerCase();
+    if (test.equals("search")) {
+        search(words);
+    } else if (test.equals("add")) {
+        
+    } else if (test.equals("view")) {
+        
+    } else if (test.equals("remove")) {
        
-	} else if (test.equals("quit")) {
+    } else if (test.equals("quit")) {
             done = true;
         
     } else if (test.equals("load")) {
@@ -41,7 +41,7 @@ public class ParseInput
         for(int i = first; i < a.length-1; i++){
             out += a[i] + s;
         }
-	out += a[a.length - 1];
+    out += a[a.length - 1];
         return out;
     } 
         private String reConcat(String[] a){
@@ -50,26 +50,34 @@ public class ParseInput
 
     private void searchDB(String query) {
         ArrayList<JSONObject> list = Database.searchByQuery(query);
+        if (list == null)
+            return;
         for(JSONObject a : list){
-            System.out.println(new Entry(a) + "\n");
+            if (a != null) {
+				System.out.println(new Entry(a) + "\n");
+            }
         }
     }
    
     private ArrayList<Entry> searchLoc(String query) {
-	ArrayList<Entry> list = current.search(query);
-	return list;
+    ArrayList<Entry> list = current.search(query);
+    return list;
     }
 
     private void search(String[] words) {
-	String search;
-	if(words[1].equals("online")){
-	    search = reConcat(words, " ", 2);
-	    searchDB(search);
-	} else if(words[1].equals("local")){
-	    search = reConcat(words, " ", 2);
-	} else {
-	    search = reConcat(words, " ", 1);
-	}
+    String search;
+    if(words[1].equals("online")){
+        search = reConcat(words, " ", 2);
+        searchDB(search);
+    } else if(words[1].equals("local")){
+        search = reConcat(words, " ", 2);
+    } else {
+        search = reConcat(words, " ", 1);
+    }
+    }
+    
+    private void view(){
+        
     }
 
     private void remove(String[] words) {
