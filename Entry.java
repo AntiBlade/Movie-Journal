@@ -9,11 +9,22 @@ public class Entry {
     private Media item;
     private double userRating;
     private String userReview;
-    private boolean hasSeen;
+    private int timesSeen;
     private int dateSeen;
     private String entryDescription;
     private int[] location = new int[2];
     // TODO: Add more features
+
+    public String toString() {
+        String s = "";
+        s += item.getDatum("Title");
+        s += "\n\t" + item.getDatum("Director");
+		s += "\n\t" + item.getDatum("Released");
+        s += "\n\t" + item.getDatum("Plot").substring(0, 30) + "....";
+        if (entryDescription) s += "\n\t" + entryDescription;
+
+        return s;
+    }
 
     /*
      * setItem
@@ -64,20 +75,20 @@ public class Entry {
     public String getUserReview() {return userReview;}
 
     /* 
-     * setHasSeen
-     * Purpose: Set the hasSeen field
-     * Parameters: (boolean) seen
+     * setTimesSeen
+     * Purpose: Set the timesSeen field
+     * Parameters: (int) seen - number of times seen
      * Returns: Nothing (sets a value)
      */
-    public void setHasSeen(boolean seen) {hasSeen = seen;}
+    public void setTimesSeen(int seen) {timesSeen = seen;}
 
     /*
-     * getHasSeen
-     * Purpose: Gets the value in hasSeen
+     * getTimesSeen
+     * Purpose: Gets the value in timesSeen
      * Parameters: None
-     * Returns: The value in hasSeen
+     * Returns: The value in timesSeen
      */
-    public boolean getHasSeen() {return hasSeen;}
+    public int getTimesSeen() {return timesSeen;}
 
     /*
      * setDateSeen
