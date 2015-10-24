@@ -23,6 +23,8 @@ public class Entry {
     public Entry(JSONObject j) {
         if (j.getString("Type").equals("movie")) {
             item = new Movie(j);
+        } else if (j,getString("Type").equals("series")) {
+            item = new Series(j);
         }
         dateEntered = new Date(System.currentTimeMillis());
     }
