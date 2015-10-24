@@ -126,7 +126,7 @@ public class ParseInput
 	for (int i = 0; i < result.size(); ++i)
 	    System.out.println(i+1 + ": " + result.get(i));
 	System.out.println("Enter the number of the entry you wish to add, -1 to cancel: ");
-	int input = Integer.parseInt(userInput(console, "Entry#"));
+	int input = Integer.parseInt(userInput.getInput(console, "Entry#"));
 	if (input-1 < result.size()) 
 	    current.addEntry(result.get(input-1));
 	else {
