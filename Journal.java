@@ -3,11 +3,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 public class Journal
 {
-    ArrayList<Entry> entries = new ArrayList<Entry>();
+    private ArrayList<Entry> entries = new ArrayList<Entry>();
     private String owner = "";
 
     public Journal(String owner) {
         this.owner = owner;
+    }
+
+    public void setEntries(ArrayList<Entry> newEntries) {
+	entries = newEntries;
+    }
+
+    public ArrayList<Entry> getEntries() {
+	return entries;
     }
 
     /**

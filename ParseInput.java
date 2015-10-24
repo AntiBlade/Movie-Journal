@@ -64,6 +64,11 @@ public class ParseInput
     return list;
     }
 
+    private ArrayList<Entry> searchLoc(String[] query) {
+    ArrayList<Entry> list = current.search(query);
+    return list;
+    }
+    
     private void search(String[] words) {
     String search;
     if(words[1].equals("online")){
@@ -76,8 +81,13 @@ public class ParseInput
     }
     }
     
-    private void view(){
-        
+    private void view(String[] words){
+        if(words.length==1){
+            System.out.println(current);
+        } else {
+            String[] a = Arrays.copyOfRange(words, 1, words.length);
+            searchLoc(a);
+        }
     }
 
     private void remove(String[] words) {
